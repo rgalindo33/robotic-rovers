@@ -1,10 +1,13 @@
 class Plateu
 
-  attr_reader :height, :width
+  attr_reader :width, :height
 
-  def initialize height, width
-    @height = height
-    @width  = width
+  def initialize coordinates
+    @width, @height = coordinates
+  end
+
+  def valid_position? x, y
+    x <= width and y <= height
   end
 
 end
