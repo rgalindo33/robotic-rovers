@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Rover do
 
-  subject{ Rover.new [ 1, 0, 'N'] }
+  subject{ Rover.new [ 1, 0, :north ] }
 
   describe '#initialize' do
     it 'sets the initial rover position' do
@@ -20,7 +20,7 @@ describe Rover do
   describe '#turn_left' do
     it 'changes the direction in the proper direction' do
       subject.turn_left
-      expect( subject.orientation ).to eq 'W'
+      expect( subject.orientation ).to eq :west
     end
 
   end
@@ -28,7 +28,7 @@ describe Rover do
   describe '#turn_right' do
     it 'changes the direction in the proper direction' do
       subject.turn_right
-      expect( subject.orientation ).to eq 'E'
+      expect( subject.orientation ).to eq :east
     end
 
     it 'successfully turns 360 degrees' do
@@ -36,7 +36,7 @@ describe Rover do
         subject.turn_right
       end
 
-      expect( subject.orientation ).to eq 'N'
+      expect( subject.orientation ).to eq :north
     end
   end
 

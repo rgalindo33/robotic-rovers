@@ -1,6 +1,6 @@
 class Rover
 
-  CARDINAL_POINTS = [ 'N', 'E', 'S', 'W' ]
+  CARDINAL_POINTS = [ :north, :east, :south, :west ]
 
   attr_accessor :x_position, :y_position, :orientation
 
