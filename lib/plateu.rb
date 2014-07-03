@@ -7,7 +7,7 @@ class Plateu
   end
 
   def valid_position? x, y
-    x <= width and y <= height
+    x.between?( 0, width ) and y.between?( 0, height )
   end
 
 end
