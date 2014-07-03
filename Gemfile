@@ -8,5 +8,5 @@ end
 group :development do
   gem 'guard'
   gem 'guard-rspec'
-  gem 'pry', '0.9.12'
+  gem 'pry'
 end

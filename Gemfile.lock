@@ -52,6 +52,6 @@ PLATFORMS
 DEPENDENCIES
   guard
   guard-rspec
-  pry (= 0.9.12)
+  pry
   rake
   rspec
