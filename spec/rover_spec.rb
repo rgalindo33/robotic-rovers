@@ -22,12 +22,21 @@ describe Rover do
       subject.turn_left
       expect( subject.orientation ).to eq 'W'
     end
+
   end
 
   describe '#turn_right' do
     it 'changes the direction in the proper direction' do
       subject.turn_right
       expect( subject.orientation ).to eq 'E'
+    end
+
+    it 'successfully turns 360 degrees' do
+      4.times do
+        subject.turn_right
+      end
+
+      expect( subject.orientation ).to eq 'N'
     end
   end
 

@@ -13,7 +13,7 @@ class Rover
   end
 
   def turn_right
-    self.orientation = CARDINAL_POINTS[ current_orientation_index + 1 ]
+    self.orientation = CARDINAL_POINTS[ ( current_orientation_index + 1 ) % 4 ]
   end
 
 private
