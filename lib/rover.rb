@@ -2,10 +2,11 @@ class Rover
 
   CARDINAL_POINTS = [ :north, :east, :south, :west ]
 
-  attr_accessor :position
+  attr_accessor :position, :plateu
 
-  def initialize position
+  def initialize position, plateu
     @position = position
+    @plateu   = plateu
   end
 
   def turn_left
@@ -18,8 +19,9 @@ class Rover
 
   def move
     movement_method = "move_#{position.orientation}".to_sym
-    
     send movement_method
+
+    raise "major Tom to ground control - Rover out of bounds" if not plateu.valid_position? position.x, position.y
   end
 
 private

@@ -2,9 +2,10 @@ require 'spec_helper'
 
 describe Rover do
 
+  let( :plateu )  { Plateu.new [ 5, 5 ] }
   let( :position ){ Position.new( 2, 1, :north ) }
 
-  subject{ Rover.new position }
+  subject{ Rover.new position, plateu }
 
   describe '#initialize' do
     it 'sets the initial rover position' do
@@ -18,7 +19,6 @@ describe Rover do
 
       expect( subject.position.orientation ).to eq :west
     end
-
   end
 
   describe '#turn_right' do
@@ -37,7 +37,7 @@ describe Rover do
 
   describe '#move' do
     context 'going north' do
-    
+      
       let( :final_position ){ Position.new( 2, 2, :north ) }
 
       it 'moves on the right direction' do
@@ -45,7 +45,6 @@ describe Rover do
 
         expect( subject.position ).to eq final_position
       end
-      
     end
 
     context 'going east' do
@@ -58,7 +57,6 @@ describe Rover do
 
         expect( subject.position ).to eq final_position
       end
-      
     end
 
     context 'going south' do
@@ -71,7 +69,6 @@ describe Rover do
 
         expect( subject.position ).to eq final_position
       end
-      
     end
 
     context 'going west' do
@@ -84,7 +81,14 @@ describe Rover do
 
         expect( subject.position ).to eq final_position
       end
-      
+    end
+
+    context 'going out of bounds' do
+      it 'raises an exception' do
+        4.times{ subject.move }
+
+        expect{ subject.move }.to raise_error
+      end
     end
 
   end
