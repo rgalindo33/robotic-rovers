@@ -2,24 +2,24 @@ class Rover
 
   CARDINAL_POINTS = [ :north, :east, :south, :west ]
 
-  attr_accessor :x_position, :y_position, :orientation
+  attr_accessor :position
 
-  def initialize coordinates
-    @x_position, @y_position, @orientation = coordinates
+  def initialize position
+    @position = position
   end
 
   def turn_left
-    self.orientation = CARDINAL_POINTS[ current_orientation_index - 1 ]
+    position.orientation = CARDINAL_POINTS[ current_orientation_index - 1 ]
   end
 
   def turn_right
-    self.orientation = CARDINAL_POINTS[ ( current_orientation_index + 1 ) % 4 ]
+    position.orientation = CARDINAL_POINTS[ ( current_orientation_index + 1 ) % 4 ]
   end
 
 private
   
   def current_orientation_index
-    CARDINAL_POINTS.index orientation
+    CARDINAL_POINTS.index position.orientation
   end
 
 end
