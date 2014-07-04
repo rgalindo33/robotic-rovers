@@ -11,10 +11,16 @@ class Navigator
   def go_explore
     instructions.each do |instruction|
       rover.send instruction
-
-      raise "Ground control to Major Tom - Rover out of bounds" if not plateu.valid_position? rover.position
+      validate_position
     end
   end
 
+private
+
+  def validate_position
+    if not plateu.valid_position? rover.position
+      raise "Ground control to Major Tom - Rover out of bounds"
+    end
+  end
 
 end
