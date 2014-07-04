@@ -2,10 +2,9 @@ require 'spec_helper'
 
 describe Rover do
 
-  let( :plateu )  { Plateu.new [ 5, 5 ] }
   let( :position ){ Position.new( 2, 1, :north ) }
 
-  subject{ Rover.new position, plateu }
+  subject{ Rover.new position }
 
   describe '#initialize' do
     it 'sets the initial rover position' do
@@ -80,14 +79,6 @@ describe Rover do
         subject.move
 
         expect( subject.position ).to eq final_position
-      end
-    end
-
-    context 'going out of bounds' do
-      it 'raises an exception' do
-        4.times{ subject.move }
-
-        expect{ subject.move }.to raise_error
       end
     end
 
