@@ -2,6 +2,13 @@ class Rover
 
   CARDINAL_POINTS = [ :north, :east, :south, :west ]
 
+  COORDINATES_MOVEMENTS = {
+    :north => [ :y, +1 ],
+    :east  => [ :x, +1 ],
+    :south => [ :y, -1 ],
+    :west  => [ :x, -1 ]
+  }
+
   attr_accessor :position
 
   def initialize position
@@ -17,31 +24,16 @@ class Rover
   end
 
   def move
-    movement_method = "move_#{position.orientation}".to_sym
-    
-    send movement_method
+    axis, variation = COORDINATES_MOVEMENTS[ position.orientation ]
+    new_coordinate  = ( position.send axis ) + variation 
+
+    position.send :"#{ axis }=", new_coordinate
   end
 
 private
   
   def current_orientation_index
     CARDINAL_POINTS.index position.orientation
-  end
-
-  def move_north
-    position.y += 1
-  end
-
-  def move_east
-    position.x += 1
-  end
-
-  def move_south
-    position.y -= 1
-  end
-
-  def move_west
-    position.x -= 1
   end
 
 end

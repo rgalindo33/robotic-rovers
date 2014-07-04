@@ -84,5 +84,4 @@ describe Rover do
 
   end
 
-
 end
