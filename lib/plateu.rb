@@ -6,8 +6,8 @@ class Plateu
     @width, @height = coordinates
   end
 
-  def valid_position? x, y
-    x.between?( 0, width ) and y.between?( 0, height )
+  def valid_position? position
+    position.x.between?( 0, width ) and position.y.between?( 0, height )
   end
 
 end

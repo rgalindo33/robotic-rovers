@@ -20,22 +20,20 @@ describe Plateu do
 
     context 'with valid coordinates' do
 
-      let( :x ){ 2 }
-      let( :y ){ 4 }
+      let( :position ){ Position.new( 2, 4, :north ) }
 
       it 'confirms valid coordinates' do
-        expect( subject.valid_position? x, y ).to be true
+        expect( subject.valid_position? position ).to be true
       end
 
     end
 
     context 'with invalid coordinates' do
 
-      let( :x ){ 6 }
-      let( :y ){ 4 }
+      let( :position ){ Position.new( 6, 4, :north ) }
 
       it 'rejects invalid coordinates' do
-        expect( subject.valid_position? x, y ).to be false
+        expect( subject.valid_position? position ).to be false
       end
 
     end
