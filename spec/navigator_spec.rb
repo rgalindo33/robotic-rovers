@@ -25,12 +25,12 @@ describe Navigator do
     end
   end
 
-  describe '#go_explore' do
+  describe '#run' do
 
     let( :expected_position ){ Position.new( 1, 3, :north ) }
 
     it 'explores the plateu accordint to its instructions' do
-      subject.go_explore
+      subject.run
 
       expect( rover.position ).to eq expected_position
     end

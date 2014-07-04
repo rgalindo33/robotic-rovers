@@ -8,7 +8,7 @@ class Navigator
     @instructions = instructions
   end
 
-  def go_explore
+  def run
     instructions.each do |instruction|
       rover.send instruction
       validate_position
@@ -19,7 +19,7 @@ private
 
   def validate_position
     if not plateu.valid_position? rover.position
-      raise "Ground control to Major Tom - Rover out of bounds"
+      raise "Ground control to Major Tom! Rover out of bounds!!"
     end
   end
 
