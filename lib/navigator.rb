@@ -21,7 +21,7 @@ private
 
   def validate_position
     if not plateu.valid_position? rover.position
-      raise "Ground control to Major Tom! Rover out of bounds!!"
+      raise "Ground control to Major Tom! Rover lost to the void!!"
     end
   end
 
