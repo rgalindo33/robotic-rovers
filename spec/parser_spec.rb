@@ -42,6 +42,15 @@ describe Parser do
     end
   end
 
+  describe '#parse_position' do
+    let( :position ){ "33N"}
+    let( :expected_position ){ Position.new 3, 3, :north }
+
+    it 'returns a filled position object' do
+      expect( subject.send :parse_position, position ).to eq expected_position
+    end
+  end
+
   describe '#parse_instructions' do
 
     let( :instructions )       { 'LMRMMM' }

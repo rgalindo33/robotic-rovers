@@ -1,9 +1,18 @@
 class Parser
 
+  require 'position'
+
   INSTRUCTIONS_RELATION = {
     'L' => :turn_left,
     'R' => :turn_right,
     'M' => :move,
+  }
+
+  POSITIONS_RELATION = {
+    'N' => :north,
+    'E' => :east,
+    'S' => :south,
+    'W' => :west
   }
 
   attr_reader :data
@@ -26,16 +35,24 @@ private
   end
 
   def parse_rovers
-    rovers_data.each_slice(2).map do |position, instructions|
+    rovers_data.each_slice(2).map do |location, movements|
       { 
-        :position => position,
-        :instructions => parse_instructions( instructions )
+        :position     => parse_position( location ),
+        :instructions => parse_instructions( movements )
       }
     end
   end
 
-  def parse_instructions instructions
-    instructions.split(//).map do |instruction|
+  def parse_position location
+    args = location.split(//).map do |literal|
+      literal =~ /^[0-9]+$/ ? literal.to_i : POSITIONS_RELATION[ literal ]  
+    end
+
+    Position.new *args
+  end
+
+  def parse_instructions movements
+    movements.split(//).map do |instruction|
       INSTRUCTIONS_RELATION[ instruction ]
     end
   end
