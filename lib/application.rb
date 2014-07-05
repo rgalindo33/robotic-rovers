@@ -1,8 +1,11 @@
-class Application
+$LOAD_PATH.unshift("#{File.dirname(__FILE__)}/../lib")
 
-  require 'parser'
-  require 'plateu'
-  require 'navigator'
+require 'plateu'
+require 'rover'
+require 'navigator'
+require 'parser'
+
+class Application
 
   attr_accessor :parser
   attr_reader :navigators
@@ -23,7 +26,7 @@ private
   
   def prepare_navigators
     plateu = Plateu.new parsed_data[ :plateu ]
-    
+
     parsed_data[ :rovers ].map do |rover_data|
       rover = Rover.new rover_data[ :position ]
 
