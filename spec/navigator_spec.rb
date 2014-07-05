@@ -30,9 +30,7 @@ describe Navigator do
     let( :expected_position ){ Position.new( 1, 3, :north ) }
 
     it 'explores the plateu accordint to its instructions' do
-      subject.run
-
-      expect( rover.position ).to eq expected_position
+      expect( subject.run ).to eq expected_position
     end
 
     context 'going out of bouds' do
@@ -40,7 +38,6 @@ describe Navigator do
       let( :instructions ){ [ :turn_right, :turn_right, :move, :move ] }
 
       it 'raises an exception if rover is out of bounds' do
-
         expect{ subject.move }.to raise_error
       end
     end

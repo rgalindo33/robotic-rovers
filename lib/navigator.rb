@@ -13,6 +13,8 @@ class Navigator
       rover.send instruction
       validate_position
     end
+    
+    rover.position
   end
 
 private
