@@ -22,6 +22,17 @@ describe Parser do
     end
   end
 
+  describe '#compose_position' do
+
+    let( :given_position )   { Position.new 3, 3, :south}
+    let( :expected_position ) { '33S' }
+
+    it 'given a position, returns a string with the right structure' do
+      expect( subject.compose_position given_position ).to eq expected_position
+    end
+
+  end
+
   describe '#parse_plateu' do
     it 'reads and prepares the size of the plateu' do
       expect( subject.send :parse_plateu ).to eq [ 5,5 ]

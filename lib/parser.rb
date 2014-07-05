@@ -28,6 +28,10 @@ class Parser
     }
   end
 
+  def compose_position position
+    "#{position.x}#{position.y}" + POSITIONS_RELATION.key( position.orientation )
+  end
+
 private
 
   def parse_plateu
@@ -56,7 +60,7 @@ private
       INSTRUCTIONS_RELATION[ instruction ]
     end
   end
-
+ 
   def rovers_data
     data[1..-1]
   end
