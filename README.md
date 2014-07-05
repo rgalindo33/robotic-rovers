@@ -22,10 +22,14 @@ INPUT AND OUTPUT
 ----------------
 
 Test Input:
-55
-12N
-LMLMLMLMM 33E MMRMMRMRRM
+
+    55
+    12N
+    LMLMLMLMM
+    33E
+    MMRMMRMRRM
 
 Expected Output: 
-13N
-51E
+    
+    13N
+    51E
