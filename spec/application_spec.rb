@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe Application do
 
-  let( :input )          { "55\n12N\nLMLMLMLMM\n33E\nMMRMMRMRRM" }
-  let( :expected_output ){ "13N\n51E" }
+  let( :input )          { "5 5\n1 2 N\nLMLMLMLMM\n3 3 E\nMMRMMRMRRM" }
+  let( :expected_output ){ "1 3 N\n5 1 E" }
 
   subject{ Application.new input }
 

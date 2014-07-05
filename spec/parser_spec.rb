@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Parser do
 
-  let( :data ){ "55\n12N\nLMLMLMLMM\n33E\nMMRMMRMRRM" }
+  let( :data ){ "5 5\n1 2 N\nLMLMLMLMM\n3 3 E\nMMRMMRMRRM" }
 
   subject{ Parser.new data }
 
@@ -25,7 +25,7 @@ describe Parser do
   describe '#compose_position' do
 
     let( :given_position )   { Position.new 3, 3, :south}
-    let( :expected_position ) { '33S' }
+    let( :expected_position ) { '3 3 S' }
 
     it 'given a position, returns a string with the right structure' do
       expect( subject.compose_position given_position ).to eq expected_position
@@ -54,7 +54,7 @@ describe Parser do
   end
 
   describe '#parse_position' do
-    let( :position ){ "33N"}
+    let( :position ){ "3 3 N"}
     let( :expected_position ){ Position.new 3, 3, :north }
 
     it 'returns a filled position object' do

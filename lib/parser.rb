@@ -1,6 +1,6 @@
-class Parser
+require File.expand_path('../position', __FILE__)
 
-  require 'position'
+class Parser
 
   INSTRUCTIONS_RELATION = {
     'L' => :turn_left,
@@ -18,7 +18,7 @@ class Parser
   attr_reader :data
 
   def initialize string
-    @data = string.split
+    @data = string.split("\n")
   end
 
   def run
@@ -29,13 +29,13 @@ class Parser
   end
 
   def compose_position position
-    "#{position.x}#{position.y}" + POSITIONS_RELATION.key( position.orientation )
+    "#{position.x} #{position.y} " + POSITIONS_RELATION.key( position.orientation )
   end
 
 private
 
   def parse_plateu
-    data.first.split(//).map &:to_i
+    data.first.split.map &:to_i
   end
 
   def parse_rovers
@@ -48,7 +48,7 @@ private
   end
 
   def parse_position location
-    args = location.split(//).map do |literal|
+    args = location.split.map do |literal|
       literal =~ /^[0-9]+$/ ? literal.to_i : POSITIONS_RELATION[ literal ]  
     end
 
