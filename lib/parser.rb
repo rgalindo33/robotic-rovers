@@ -18,7 +18,7 @@ class Parser
   attr_reader :data
 
   def initialize string
-    @data = string.split("\n")
+    @data = string.strip.split("\n")
   end
 
   def run
