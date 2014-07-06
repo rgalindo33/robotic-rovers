@@ -49,7 +49,11 @@ private
 
   def parse_position location
     args = location.split.map do |literal|
-      literal =~ /^[0-9]+$/ ? literal.to_i : POSITIONS_RELATION[ literal ]  
+      case literal
+        when /^[0-9]+$/ then literal.to_i
+        when /N|S|E|W/  then POSITIONS_RELATION[ literal ]  
+        else invalid_input
+      end
     end
 
     Position.new *args
@@ -57,12 +61,16 @@ private
 
   def parse_instructions movements
     movements.split(//).map do |instruction|
-      INSTRUCTIONS_RELATION[ instruction ]
+      INSTRUCTIONS_RELATION[ instruction ] || invalid_input
     end
   end
  
   def rovers_data
     data[1..-1]
+  end
+
+  def invalid_input
+    raise "Invalid input data"
   end
   
 end

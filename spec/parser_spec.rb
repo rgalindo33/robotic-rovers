@@ -54,23 +54,45 @@ describe Parser do
   end
 
   describe '#parse_position' do
-    let( :position ){ "3 3 N"}
+
+    let( :position )         { "3 3 N"}
     let( :expected_position ){ Position.new 3, 3, :north }
 
     it 'returns a filled position object' do
       expect( subject.send :parse_position, position ).to eq expected_position
     end
+
+    context 'with invalid input data' do
+
+      let( :invalid_position ){ "3 3 T" }
+
+      it 'raises an exception' do
+        expect{ subject.send :parse_position, invalid_position }.to raise_error
+      end
+
+    end
+
   end
 
   describe '#parse_instructions' do
 
-    let( :instructions )       { 'LMRMMM' }
+    let( :instructions )         { 'LMRMMM' }
     let( :expected_instructions) { [ :turn_left, :move, :turn_right, :move, :move, :move ] }
 
     it 'builds a parsed instructions array' do 
       parsed_instructions = subject.send :parse_instructions, instructions
 
       expect( parsed_instructions ).to eq expected_instructions
+    end
+
+    context 'with invalid input data' do
+
+      let( :invalid_instruction ){ 'LMQWEA@@#' }
+
+      it 'raises an exception' do
+        expect{ subject.send :parse_instructions, invalid_instruction }.to raise_error
+      end
+
     end
   end
 
