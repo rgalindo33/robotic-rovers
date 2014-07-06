@@ -20,11 +20,11 @@ describe Navigator do
       expect( subject.plateu ).to be_a Plateu
     end
 
-    it 'creates the plateu' do
+    it 'creates the rover' do
       expect( subject.rover ).to be_a Rover
     end
 
-    it 'creates the plateu' do
+    it 'sets instructions array' do
       expect( subject.instructions ).to be_a Array
     end
   end
@@ -33,8 +33,12 @@ describe Navigator do
 
     let( :expected_position ){ Position.new( 1, 3, :north ) }
 
-    it 'explores the plateu according to its instructions' do
-      expect( subject.run ).to eq expected_position
+    context 'with a valid path' do
+
+      it 'explores the plateu according to its instructions' do
+        expect( subject.run ).to eq expected_position
+      end
+
     end
 
     context 'going out of bouds' do
