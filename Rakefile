@@ -8,7 +8,7 @@ end
 
 task :default => :spec
 
-desc "Runs the app"
+desc "Runs the app - optional input can be passed using INPUT variable"
 task :run do
 
   input = ENV['INPUT'] || "5 5\n1 2 N\nLMLMLMLMM\n3 3 E\nMMRMMRMRRM"
