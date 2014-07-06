@@ -37,7 +37,7 @@ describe Navigator do
       
       let( :instructions ){ [ :turn_right, :turn_right, :move, :move ] }
 
-      it 'raises an exception if rover is out of bounds' do
+      it 'raises an exception' do
         expect{ subject.move }.to raise_error
       end
     end
