@@ -31,8 +31,12 @@ class Parser
     end
   end
 
-  def compose_position position
-    "#{position.x} #{position.y} " + POSITIONS_RELATION.key( position.orientation )
+  def compose_output rovers_array
+    output = rovers_array.map do |roveer|
+      "#{roveer.position.x} #{roveer.position.y} " + POSITIONS_RELATION.key( roveer.position.orientation )
+    end
+
+    output.join("\n")
   end
 
 private

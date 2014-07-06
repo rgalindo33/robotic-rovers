@@ -28,13 +28,18 @@ describe Parser do
 
   end
 
-  describe '#compose_position' do
-
-    let( :given_position )   { Position.new 3, 3, :south}
-    let( :expected_position ) { '3 3 S' }
+  describe '#compose_output' do
+    
+    let( :rovers ) do
+      [ 
+        Rover.new( Position.new 3, 3, :south ),
+        Rover.new( Position.new 1, 2, :east )
+      ]
+    end
+    let( :expected_output ) { "3 3 S\n1 2 E" }
 
     it 'given a position, returns a string with the right structure' do
-      expect( subject.compose_position given_position ).to eq expected_position
+      expect( subject.compose_output rovers ).to eq expected_output
     end
 
   end

@@ -15,23 +15,19 @@ class Application
   def run
     navigators.each &:run
 
-    compose_output
+    parser.compose_output rovers
   end
 
 private
   
   def navigators
-    parsed_data.map do |navigator_data|
+    @navigators ||= parsed_data.map do |navigator_data|
       Navigator.new navigator_data
     end
   end
 
-  def compose_output
-    return_array = navigators.map do |navigator|
-      parser.compose_position navigator.rover.position
-    end
-
-    return_array.join("\n")
+  def rovers
+    @rovers ||= navigators.map &:rover
   end
 
 end
