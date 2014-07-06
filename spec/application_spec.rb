@@ -8,9 +8,13 @@ describe Application do
   subject{ Application.new input }
 
   describe '#initialize' do
-    it 'instanciates a parser' do
-      expect( subject.parser ).to be_a Parser
+    it 'parses the given data and stores it' do
+      expect( subject.parsed_data.size ).to be 2
     end
+  end
+
+  describe '#prepare_navigators' do
+
   end
 
   describe '#run' do

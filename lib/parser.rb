@@ -22,10 +22,13 @@ class Parser
   end
 
   def run
-    {
-      :plateu => parse_plateu,
-      :rovers => parse_rovers
-    }
+    rovers_data.each_slice(2).map do |location, movements|
+      { 
+        :plateu       => parse_plateu,
+        :position     => parse_position( location ),
+        :instructions => parse_instructions( movements )
+      }
+    end
   end
 
   def compose_position position
@@ -36,15 +39,6 @@ private
 
   def parse_plateu
     data.first.split.map &:to_i
-  end
-
-  def parse_rovers
-    rovers_data.each_slice(2).map do |location, movements|
-      { 
-        :position     => parse_position( location ),
-        :instructions => parse_instructions( movements )
-      }
-    end
   end
 
   def parse_position location

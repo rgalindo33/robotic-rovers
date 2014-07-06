@@ -1,11 +1,15 @@
+require 'plateu'
+require 'rover'
+
 class Navigator
 
   attr_reader :plateu, :rover, :instructions
 
-  def initialize plateu, rover, instructions=[]
-    @plateu       = plateu
-    @rover        = rover
-    @instructions = instructions
+  def initialize data
+    @plateu       = Plateu.new data[ :plateu ]
+    @rover        = Rover.new  data[ :position ]
+    @instructions = data[ :instructions ]
+
   end
 
   def run

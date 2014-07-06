@@ -39,7 +39,7 @@ describe Rover do
       
       let( :final_position ){ Position.new( 2, 2, :north ) }
 
-      it 'moves on the right direction' do
+      it 'moves' do
         subject.move
 
         expect( subject.position ).to eq final_position
@@ -50,7 +50,7 @@ describe Rover do
     
       let( :final_position ){ Position.new( 3, 1, :east ) }
 
-      it 'moves on the right direction' do
+      it 'moves' do
         subject.turn_right
         subject.move
 
@@ -62,7 +62,7 @@ describe Rover do
     
       let( :final_position ){ Position.new( 2, 0, :south ) }
 
-      it 'moves on the right direction' do
+      it 'moves' do
         2.times{ subject.turn_right }
         subject.move
 
@@ -74,7 +74,7 @@ describe Rover do
     
       let( :final_position ){ Position.new( 1, 1, :west ) }
 
-      it 'moves on the right direction' do
+      it 'moves' do
         subject.turn_left
         subject.move
 

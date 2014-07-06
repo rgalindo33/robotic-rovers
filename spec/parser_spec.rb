@@ -8,7 +8,7 @@ describe Parser do
 
   describe '#initialize' do
     it 'sets data' do
-      expect( subject.data ).to be_an Array
+      expect( subject.data.size ).to eq 5
     end
   end
 
@@ -17,9 +17,19 @@ describe Parser do
     let( :parsed_data ){ subject.run }
     
     it 'has the correct structure' do 
-      expect( parsed_data ).to have_key :plateu
-      expect( parsed_data ).to have_key :rovers
+      expect( parsed_data ).to be_a Array
     end
+
+    it 'creates an array of rovers info' do
+      expect( parsed_data.length ).to be 2
+    end
+
+    it 'array has a hash with respective keys' do
+      expect( parsed_data.first ).to have_key :plateu
+      expect( parsed_data.first ).to have_key :position
+      expect( parsed_data.first ).to have_key :instructions
+    end
+
   end
 
   describe '#compose_position' do
@@ -36,20 +46,6 @@ describe Parser do
   describe '#parse_plateu' do
     it 'reads and prepares the size of the plateu' do
       expect( subject.send :parse_plateu ).to eq [ 5,5 ]
-    end
-  end
-
-  describe '#parse_rovers' do
-
-    let( :rovers ){ subject.send :parse_rovers}
-
-    it 'creates an array of rovers info' do
-      expect( rovers.length ).to be 2
-    end
-
-    it 'array has a hash with respective keys' do
-      expect( rovers.first ).to have_key :position
-      expect( rovers.first ).to have_key :instructions
     end
   end
 

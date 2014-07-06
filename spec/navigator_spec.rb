@@ -2,26 +2,30 @@ require 'spec_helper'
 
 describe Navigator do
 
-  subject{ Navigator.new plateu, rover, instructions }
+  subject{ Navigator.new data }
 
-  let( :plateu ){ Plateu.new [ 5, 5 ] }
-  let( :rover ) { Rover.new Position.new( 1, 2, :north ) }
-  
-  let( :instructions ) do
-   [ 
-    :turn_left, :move,
-    :turn_left, :move,
-    :turn_left, :move,
-    :turn_left, :move,
-    :move
-  ]
+  let( :data ) do
+    { 
+      :plateu => [ 5, 5 ],
+      :position => Position.new( 1, 2, :north ),
+      :instructions => [ 
+        :turn_left, :move, :turn_left, :move, 
+        :turn_left, :move, :turn_left, :move, :move 
+       ]
+    }
   end
 
   describe '#initialize' do
-    it 'sets the navigation environment' do
-      expect( subject.plateu ).to eq plateu
-      expect( subject.rover ).to eq rover
-      expect( subject.instructions ).to eq instructions
+    it 'creates the plateu' do
+      expect( subject.plateu ).to be_a Plateu
+    end
+
+    it 'creates the plateu' do
+      expect( subject.rover ).to be_a Rover
+    end
+
+    it 'creates the plateu' do
+      expect( subject.instructions ).to be_a Array
     end
   end
 
@@ -29,7 +33,7 @@ describe Navigator do
 
     let( :expected_position ){ Position.new( 1, 3, :north ) }
 
-    it 'explores the plateu accordint to its instructions' do
+    it 'explores the plateu according to its instructions' do
       expect( subject.run ).to eq expected_position
     end
 
