@@ -48,19 +48,6 @@ Expected Output:
 
 The Solution
 ------------
-<!--My solution uses a main Application class that handles the input and instanciates a Parser object. With the parsed data it creates several Navigators, each one containing a Rover and the Plateu. I decided to include a Rover and a plateu inside a Navigator as it resulted in a cleaner solution
-
-The Parser object reads the input
-
-The plateu ob
-
-
-The position object is used merely as a data structure and has only getters and setters.-->
-
-The application was developed using 	the Test Driven Development approach.
-
-For continous testing, I used the [Guard](https://github.com/guard/guard) gem.
-
 
 ###Assumptions
 
@@ -68,7 +55,23 @@ For continous testing, I used the [Guard](https://github.com/guard/guard) gem.
 * Rovers can share the same position
 
 
-###Usage
+My solution uses a main Application class that handles the input by instanciating a Parser object. With the parsed data it creates several Navigators, each one containing a Rover,a Plateu and several instructions. It then uses a Composer object to build the expected output.
+
+The Navigator Object has the responsability of executing the given instructions on its rover and watches if the rover have or have not abandoned its plateu. 
+
+The Rover object knows how to move itself and nothing else.
+
+The Plateu object stores its size and checks if a given positions is valid. The Position object is used merely as a data structure and has only getters and setters.
+
+The input and output of the application can be easily modified without affecting the other parts of it by defining new Parsers/Composers in the IOInterface namespace
+
+The application was developed using 	the Test Driven Development approach. For continous testing, I used the [Guard](https://github.com/guard/guard) gem.
+
+
+
+
+Usage
+-----
 
 Following rake tasks are available
     
@@ -96,7 +99,7 @@ To run the app using the standard input values provided on the problem descripto
     5 1 E
 
 
-You can give your own input string, using a ENV variable:
+You can give your own input string, using a variable:
 
     $ rake run INPUT="
     5 6
