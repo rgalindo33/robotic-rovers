@@ -2,6 +2,8 @@ require File.expand_path('../position', __FILE__)
 
 class Parser
 
+  InvalidInputError = Class.new StandardError
+
   INSTRUCTIONS_RELATION = {
     'L' => :turn_left,
     'R' => :turn_right,
@@ -68,7 +70,7 @@ private
   end
 
   def invalid_input
-    raise "Invalid input data"
+    raise InvalidInputError, "The input does not match the defined standard"
   end
   
 end

@@ -3,6 +3,8 @@ require 'rover'
 
 class Navigator
 
+  RoverOutOfBoundsError = Class.new StandardError
+
   attr_reader :plateu, :rover, :instructions
 
   def initialize data
@@ -25,7 +27,7 @@ private
 
   def validate_position
     if not plateu.valid_position? rover.position
-      raise "Ground control to Major Tom! Rover lost to the void!!"
+      raise RoverOutOfBoundsError,  "Ground control to Major Tom! Rover lost to the void!!"
     end
   end
 
