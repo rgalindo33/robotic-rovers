@@ -8,12 +8,19 @@ describe Application do
   subject{ Application.new input }
 
   describe '#initialize' do
-    it 'parses the given data and stores it' do
-      expect( subject.parsed_data.size ).to be 2
+
+    it 'sets the data' do
+      expect( subject.data ).to eq input
     end
   end
 
-  describe '#prepare_navigators' do
+  describe '#parsed_data' do
+
+    let( :parsed_data ){ subject.send :parsed_data }
+
+    it 'parses the given data' do
+      expect( parsed_data.size ).to be 2
+    end
 
   end
 

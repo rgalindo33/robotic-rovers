@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe Parser do
+describe IOInterface::Parser do
 
   let( :data ){ "5 5\n1 2 N\nLMLMLMLMM\n3 3 E\nMMRMMRMRRM" }
 
-  subject{ Parser.new data }
+  subject{ IOInterface::Parser.new data }
 
   describe '#initialize' do
     it 'creates an array splitting the given data' do
@@ -24,22 +24,6 @@ describe Parser do
       expect( parsed_data.first ).to have_key :plateu
       expect( parsed_data.first ).to have_key :position
       expect( parsed_data.first ).to have_key :instructions
-    end
-
-  end
-
-  describe '#compose_output' do
-    
-    let( :rovers ) do
-      [ 
-        Rover.new( Position.new 3, 3, :south ),
-        Rover.new( Position.new 1, 2, :east )
-      ]
-    end
-    let( :expected_output ) { "3 3 S\n1 2 E" }
-
-    it 'given a position, returns a string with the right structure' do
-      expect( subject.compose_output rovers ).to eq expected_output
     end
 
   end

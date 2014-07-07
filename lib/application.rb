@@ -1,33 +1,41 @@
 $LOAD_PATH.unshift("#{File.dirname(__FILE__)}/../lib")
 
 require 'navigator'
-require 'parser'
+require 'io_interface/parser'
+require 'io_interface/composer'
 
 class Application
 
-  attr_accessor :parser, :parsed_data
+  attr_accessor :data
 
   def initialize data
-    @parser      = Parser.new data
-    @parsed_data = parser.run
+    @data = data
   end
 
   def run
     navigators.each &:run
 
-    parser.compose_output rovers
+    composer.run
   end
 
 private
+
+  def parser
+    @parser ||= IOInterface::Parser.new data
+  end
+
+  def composer
+    @composer ||= IOInterface::Composer.new navigators
+  end
+
+  def parsed_data
+    @parsed_data ||= parser.run
+  end
   
   def navigators
     @navigators ||= parsed_data.map do |navigator_data|
       Navigator.new navigator_data
     end
-  end
-
-  def rovers
-    @rovers ||= navigators.map &:rover
   end
 
 end
